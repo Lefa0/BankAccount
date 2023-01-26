@@ -1,0 +1,16 @@
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.csproj.AssemblyReference.cache
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.AssemblyInfoInputs.cache
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.AssemblyInfo.cs
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.csproj.CoreCompileInputs.cache
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.exe
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.deps.json
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.runtimeconfig.json
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.runtimeconfig.dev.json
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.dll
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\bin\Debug\net5.0\BankAccount.pdb
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.dll
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\refint\BankAccount.dll
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.pdb
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\BankAccount.genruntimeconfig.cache
+C:\Users\m.moletsane\source\repos\BankAccount\BankAccount\obj\Debug\net5.0\ref\BankAccount.dll
