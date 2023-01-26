@@ -14,16 +14,13 @@ namespace BankAccount
         {
             Balance = 0;
         }
+
         public void CreateAccount()
         {       
                 string exit = "Yes";
                 bool isWorking = true;
             do
             {
-                Console.WriteLine("================================================================");
-                Console.WriteLine("To open a new account, please enter your personal details below: ");
-                Console.WriteLine("================================================================\n");
-
                 Console.WriteLine("1. Enter full name: ");
                 var fullName = Console.ReadLine();
 
@@ -35,7 +32,7 @@ namespace BankAccount
 
                 Random random = new Random();
                 Console.WriteLine("\n===============================================================");
-                Console.WriteLine($"An account {random.Next(10000000, 99999999)} was created for {fullName}, with intial Balance R {Balance} ");
+                Console.WriteLine($"An account {random.Next(10000000, 99999999)} was created for {fullName}, with intial Balance R{Balance}");
 
                 Console.WriteLine("\n");
 
@@ -46,8 +43,6 @@ namespace BankAccount
                     isWorking = false;
             }
             while(isWorking);
-
         }
-
     }
 }
