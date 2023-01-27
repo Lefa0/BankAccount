@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,41 +9,23 @@ namespace BankAccount
 {
     public class BankAccount
     {
-        private decimal Balance { get; set; }
+        public string FullName { get; set; }
+        public double IdNumber { get; set; }
+        public string PhysicalAddress { get; set; }
+        public decimal Balance { get; set; }
 
-        public BankAccount()
+        public BankAccount(string fullName, double idNumber, string physicalAddress, decimal balance)
         {
-            Balance = 0;
+            Balance = balance;
+            FullName = fullName;
+            IdNumber = idNumber;
+            PhysicalAddress = physicalAddress;
         }
 
         public void CreateAccount()
-        {       
-                string exit = "Yes";
-                bool isWorking = true;
-            do
-            {
-                Console.WriteLine("1. Enter full name: ");
-                var fullName = Console.ReadLine();
-
-                Console.WriteLine("2. Enter ID Number: ");
-                string idNumber = Console.ReadLine();
-
-                Console.WriteLine("4. Enter Physical Address: ");
-                string physicalAdress = Console.ReadLine();
-
-                Random random = new Random();
-                Console.WriteLine("\n===============================================================");
-                Console.WriteLine($"An account {random.Next(10000000, 99999999)} was created for {fullName}, with intial Balance R{Balance}");
-
-                Console.WriteLine("\n");
-
-                Console.WriteLine("To exit, type 'Yes'.");
-                exit = Console.ReadLine();
-
-                if (exit == "Yes")
-                    isWorking = false;
-            }
-            while(isWorking);
+        {
+            Random random = new Random();
+            Console.WriteLine($"An account {random.Next(10000000, 99999999)} was created for {FullName}, with intial Balance R {Balance}");
         }
     }
 }
