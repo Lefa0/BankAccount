@@ -7,30 +7,20 @@ namespace BankAccount
     {
         static void Main(string[] args)
         {
-            string fullName, physicalAddress;
-            double idNumber;
-            decimal initialBalance = 0;
 
-            string exit = "1";
+            var myNewAccount = new BankAccount("Kelly");
+            //myNewAccount.CreateAccount();
 
-            while (exit != "0")
-            {
-                Console.WriteLine("1. Enter full name: ");
-                fullName = Console.ReadLine();
+            myNewAccount.Withdraw();
+            myNewAccount.Deposit(5);
+            //myNewAccount.GetBalance(); 
+            
+            //var checking = new CheckingAccount();
+            //checking.Withdraw();
 
-                Console.WriteLine("2. Enter ID Number: ");
-                idNumber = Convert.ToDouble(Console.ReadLine());
-
-                Console.WriteLine("4. Enter Physical Address: ");
-                physicalAddress = Console.ReadLine();
-
-                var myNewAccount = new BankAccount(fullName, idNumber, physicalAddress, initialBalance);
-                myNewAccount.CreateAccount();
-
-                Console.WriteLine("Do you want to continue? Enter 0 to exit!");
-                exit = Console.ReadLine();
-            }
-
+            var savings = new SavingsAccount();
+            savings.PostInterest();
+            
         }
     }
 }
