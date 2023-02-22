@@ -96,7 +96,6 @@ namespace BankAccount
             } 
             return idNumber; 
         }
-
         public string PhoneNumberValidate(string? phoneNumber) 
         { 
             bool isPhoneNumberValid = false; 
@@ -113,7 +112,6 @@ namespace BankAccount
             }
             return phoneNumber; 
         }
-
         public string PassportNumberValidation(string? passportNumber)
         {
             bool ispassportNumberValid = false;
