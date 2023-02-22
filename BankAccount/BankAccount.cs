@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BankAccount
@@ -11,98 +12,44 @@ namespace BankAccount
     {
         public string FullName { get; set; }
         public string IdNumber { get; set; }
-        public double PhoneNumber { get; set; }
+        public string PassportNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string PhysicalAddress { get; set; }
         public double Balance { get; set; } = 1000;
         public string AccountNumber { get; set; }
 
         public BankAccount()
         { }
-        public BankAccount(string fullName, double phoneNumber, string idNumber, string physicalAddress)
+        public BankAccount(string fullName, string phoneNumber, string idNumber, string passportNumber, string physicalAddress, string accountNumber)
         {
             FullName = fullName;
             PhoneNumber = phoneNumber;
             IdNumber = idNumber;
+            PassportNumber = passportNumber;
             PhysicalAddress = physicalAddress;
+            AccountNumber = accountNumber;
         }
-        public void CreateAccount()
+        public string CreateAccount()
         {
-            string fullName, physicalAddress;
-            string idNumber;
-            double phoneNumber;
-
             var numb = 657;
             Random random = new Random();
-            AccountNumber = (numb.ToString() + random.Next(1000000, 9999999).ToString());
-
-            string exit = "1";
-            while (exit != "0")
-            {
-                Console.WriteLine("TO CREATE A NEW ACCOUNT, PLEASE FOLLOW THE PROMPTS BELOW:");
-                Console.WriteLine("#########################################################\n");
-
-                Console.WriteLine("1. Enter full name: ");
-                fullName = Console.ReadLine();
-
-                Console.WriteLine("2. Enter ID Number: ");
-                idNumber = Console.ReadLine();
-
-                try
-                {
-                    double idNumberAsDouble = double.Parse(idNumber);
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("2. Enter ID Number: ");
-                    idNumber = Console.ReadLine();
-                }
-
-                Console.WriteLine("3. Enter Phone Number: ");
-                phoneNumber = Convert.ToDouble(Console.ReadLine());
-                try
-                {
-                    double phoneNumberAsDouble = double.Parse(idNumber);
-
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("3. Enter Phone Number: ");
-                    phoneNumber = Convert.ToDouble(Console.ReadLine());
-                }
-
-                Console.WriteLine("4. Enter Physical Address: ");
-                physicalAddress = Console.ReadLine();
-
-                Console.WriteLine($"An account {AccountNumber} for {fullName} has been been opened on {DateTime.Now}");
-
-                Console.WriteLine("\nDo you want to continue? Enter 0 to exit!");
-                exit = Console.ReadLine();
-            }
-
+            return (numb.ToString() + random.Next(1000000, 9999999).ToString());
         }
         public void GetBalance()
         {
             Console.WriteLine($"balance: {Balance}");
         }
-        public virtual bool Withdraw()
+        public virtual bool Withdraw(double amount)
         {
-            //Console.WriteLine($"Available balance: {Balance}");
-            Console.Write("Enter amount to withdraw: ");
-            var amount = Convert.ToDouble(Console.ReadLine());
-
             if (Balance >= amount)
             {
                 Balance -= amount;
-                Console.WriteLine("true");
+                Console.WriteLine($"An amount R{amount}, was withdrawn from your acccount. Remaining balance: R{Balance}");
                 return true;
-                
             }
             else
             {
-                Console.WriteLine("false");
+                Console.WriteLine("Insufficient funds to make this withdrawal");
                 return false;
             }
             
@@ -112,7 +59,7 @@ namespace BankAccount
             if (amount >= 0)
             {
                 Balance += amount;
-                Console.WriteLine($"An amount R{amount} was deposited into your account.");
+                Console.WriteLine($"An amount R{amount} was deposited into your account. Your new balance: {Balance}");
                 //Console.WriteLine("true");
 
                 return true;
@@ -125,14 +72,64 @@ namespace BankAccount
             }
             return true;
         }
-        public string GetOwner()
+        public void GetOwner()
         {
-            return $"Account Owner {FullName}";
+            Console.WriteLine($"Account Owner {FullName} of account {AccountNumber}");
         }
-        public string GetAccountNumber() 
+        public void GetAccountNumber() 
+        {
+            Console.WriteLine($"Your account number is {AccountNumber}");
+        }
+
+        public string IDNumberValidation(string? idNumber)
         { 
-            return AccountNumber;
+            bool isIdNumberValid = false;
+            Regex patternRegex = new Regex(@"(?<Year>[2-9][3-9]|[0])(?<Month>([0][1-9])|([1][0-2]))(?<Day>([0-2][0-9])|([3][0-1]))(?<Gender>[0-9])(?<Series>[0-9]{3})(?<Citizenship>[0-9])(?<Uniform>[0-9])(?<Control>[0-9])");
+            isIdNumberValid = patternRegex.IsMatch(idNumber);
+
+            while (isIdNumberValid == false || idNumber.Length != 13) 
+            {
+                 Console.WriteLine("Invalid input! Please Enter a avalid ID number with 13 numbers only.");
+                 Console.WriteLine("2. Enter Your ID Number: ");
+                 idNumber = Console.ReadLine();
+                 isIdNumberValid = patternRegex.IsMatch(idNumber);
+            } 
+            return idNumber; 
         }
-        
+
+        public string PhoneNumberValidate(string? phoneNumber) 
+        { 
+            bool isPhoneNumberValid = false; 
+            Regex phoneNumberRegex = new Regex(@"^((?:\+27|27)|0)(72|76|62|63|71|83|84)(\d{7})$");
+            isPhoneNumberValid = phoneNumberRegex.IsMatch(phoneNumber);
+
+            while (isPhoneNumberValid == false) 
+            { 
+                Console.WriteLine("3. Enter phonenumber: "); 
+                phoneNumber = Console.ReadLine(); 
+                Console.WriteLine("Invalid Input!Please try again");
+                isPhoneNumberValid = phoneNumberRegex.IsMatch(phoneNumber);
+
+            }
+            return phoneNumber; 
+        }
+
+        public string PassportNumberValidation(string? passportNumber)
+        {
+            bool ispassportNumberValid = false;
+            Regex passportNumberRegex = new Regex(@"^[A-Z]{1}-[0-9]{7}$");
+            ispassportNumberValid = passportNumberRegex.IsMatch(passportNumber);
+
+            while (ispassportNumberValid == false || passportNumber.Length != 13)
+            {
+                Console.WriteLine("Invalid input! Please Enter a avalid Passport Number!");
+                Console.WriteLine("2. Enter Your Passport Number: ");
+                passportNumber = Console.ReadLine();
+                ispassportNumberValid = passportNumberRegex.IsMatch(passportNumber);
+            }
+            return passportNumber;
+        }
+
     }
+
 }
