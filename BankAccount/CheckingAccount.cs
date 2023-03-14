@@ -1,36 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankAccount
 {
-    public class CheckingAccount:BankAccount
+    public class CheckingAccount : BankAccount
     {
-        public const double Fee = 0.15;
-
+        public const double CheckingFee = 0.15;
+        public CheckingAccount(string name, double initialAmount)
+        {
+            FullName = name;
+            Balance = initialAmount;
+        }
         public CheckingAccount()
         { }
-        public override bool Withdraw()
+        public override bool Withdraw(double amount)
         {
-            Console.WriteLine($"Available balance: {Balance}");
-
-            Console.Write("Enter amount to withdraw: ");
-            var amount = Convert.ToDouble(Console.ReadLine());
-
             if (Balance >= amount)
             {
-                Balance -= (Fee + amount);
+                Balance -= (CheckingFee + amount);
                 Console.WriteLine($"An amount R{amount}, was withdrawn from your acccount. Remaining balance: R{Balance}");
                 return true;
 
             }
             else
             {
-                Console.WriteLine("false");
+                Console.WriteLine("Insufficient funds to make this withdrawal");
                 return false;
             }
         }
+        public override bool Deposit(double amount)
+        {
+            return base.Deposit(amount);
+        }
+
     }
 }
